@@ -1,0 +1,5 @@
+export const suggestConstants = {
+    SUGGEST_REQUEST: 'SUGGEST_REQUEST',
+    SUGGEST_SUCCESS: 'SUGGEST_SUCCESS',
+    SUGGEST_FAIL: 'SUGGEST_FAIL',
+};

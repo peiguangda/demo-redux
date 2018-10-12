@@ -1,7 +1,7 @@
 import {userConstants} from '../constants';
 
 const initialState = {
-    loggingIn: true,
+    loggingIn: false,
     email: "",
 };
 

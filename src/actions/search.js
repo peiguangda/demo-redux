@@ -1,26 +1,31 @@
 import {searchConstants} from '../constants';
 import axios from 'axios';
 
-const apiUrl = 'http://localhost:8000/';
+const apiUrl = 'http://localhost:8000';
 
 export const search = word => {
     return (dispatch) => {
-        return axios.post(`${apiUrl}/v1/search`, {search: {id: word}})
+        return axios.post(`${apiUrl}/v1/search`, {search: {id: word}, headers:{Authorization: localStorage.getItem("access_token")}})
             .then(response => {
-                // console.log(response.data.result);
                 dispatch(createSearch(response));
             })
             .catch(error => {
-                throw(error);
+                if (error.error === "Not Found") {
+                    dispatch(searchFail());
+                }
             });
     };
 };
 
 export function createSearch(response) {
-    console.log("Search:");
-    console.log(response);
     return {
         type: searchConstants.SEARCH_SUCCESS,
         result: response.data.result
+    }
+}
+
+export function searchFail() {
+    return {
+        type: searchConstants.SEARCH_FAIL,
     }
 }

@@ -37,6 +37,34 @@ code {
     border-radius: 3%;
 }
 
-#footer{
+#footer {
     margin-top: 30%;
+}
+
+.dropdown-suggest {
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 0px 0px 4px 4px;
+    border-top: 0px;
+}
+
+.text-suggest {
+    margin-left: 4%;
+    color: #afa7a7;
+}
+
+.input-search {
+    border-radius: 4px 4px 0px 0px !important;
+    border-bottom-color: #e8e8e8;
+    width: 300px;
+}
+
+.nav-config {
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
+
+.btn-search{
+    position: fixed;
 }

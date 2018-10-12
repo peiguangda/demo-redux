@@ -16,7 +16,6 @@ function search(state = initialState, action = {}) {
         case searchConstants.SEARCH_FAIL:
             return {
                 ...state,
-
             };
         default:
             return {...state}

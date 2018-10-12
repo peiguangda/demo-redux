@@ -5,34 +5,38 @@ import LoginForm from "./LoginForm";
 class About extends Component {
 
     render() {
+        console.log(this.props);
         const showResult = () => {
             if (this.props.result) {
+                var count = 0;
                 const results = this.props.result;
-                const a = results.map((result, index) => {
+                const value = results.map((result, index) => {
                     return result.entries.map((entrie, index) => {
                         return entrie.senses.map((sense, index) => {
                             return sense.examples.map((example, index) => {
-                                return <td>{example.table.text}</td>
+                                return <tr key={count}>
+                                    <td>{++count}</td>
+                                    <td>{result.lexical_category}</td>
+                                    <td>{sense.definitions}</td>
+                                    <td>{example.table.text}</td>
+                                </tr>
                             })
                         })
                     })
                 });
-                console.log("a:" + a);
-                console.log(results[0].entries[0].senses[0].examples[0].table);
                 return <Fragment>
                     <h2>Search result</h2>
                     <table className="table table-condensed">
                         <thead>
                         <tr>
                             <th>No</th>
+                            <th>Type</th>
+                            <th>Mean</th>
                             <th>Example</th>
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <td>{}</td>
-                            <td>{results[0].entries[0].senses[0].examples[0].table.text}</td>
-                        </tr>
+                        {value}
                         </tbody>
                     </table>
                 </Fragment>

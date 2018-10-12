@@ -1,6 +1,7 @@
 import React, {Component, Fragment} from 'react';
 import {connect} from 'react-redux';
 import {login} from '../actions/login';
+import {getInfo} from '../actions/getInfo';
 
 
 class LoginForm extends Component {
@@ -39,6 +40,7 @@ const mapStateToProps = (state, ownProps) => {
 
 function mapDispatchToProps(dispatch) {
     return {
+        default: dispatch(getInfo()),
         dispatchLogin: (email, password) => dispatch(login(email, password))
     }
 }
