@@ -1,9 +1,15 @@
 import {Component, Fragment} from "react";
-import {NavLink} from "react-router-dom";
+import {NavLink, Link} from "react-router-dom";
 import React from "react";
 import connect from "react-redux/es/connect/connect";
+import {logout} from '../actions/logout';
 
 class DropDown extends Component {
+
+    handleLogout = () => {
+        this.props.dispatchLogout();
+    };
+
     render() {
         if (this.props.data.loggingIn === true) {
             return (
@@ -15,7 +21,7 @@ class DropDown extends Component {
                         <li><a href="/">Setting</a></li>
                         <li><a href="/">For us</a></li>
                         <li role="separator" className="divider"/>
-                        <li><a href="/">Log out</a></li>
+                        <li><Link to="/" onClick={this.handleLogout}>Log out</Link></li>
                     </ul>
                 </Fragment>
             )
@@ -35,6 +41,7 @@ const mapStateToProps = (state, ownProps) => {
 
 function mapDispatchToProps(dispatch) {
     return {
+        dispatchLogout: () => dispatch(logout())
     }
 }
 

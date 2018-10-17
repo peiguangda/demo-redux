@@ -12,18 +12,22 @@ function authentication(state = initialState, action = {}) {
         case userConstants.LOGIN_SUCCESS:
             return {
                 ...state,
-                loading: false,
+                loading: true,
                 loggingIn: true,
                 email: action.email,
             };
         case userConstants.LOGIN_FAILURE:
             return {
                 ...state,
-                loading: false,
+                loading: true,
                 loggingIn: false,
             };
         case userConstants.LOGOUT:
-            return {};
+            return {
+                ...state,
+                loading: true,
+                loggingIn: false,
+            };
         default:
             return {...state}
     }

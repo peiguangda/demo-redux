@@ -5,7 +5,11 @@ import LoginForm from "./LoginForm";
 class About extends Component {
 
     render() {
-        console.log(this.props);
+        if (this.props.loading === false) {
+            return <Fragment>
+                <div>Loading...</div>
+            </Fragment>
+        }
         const showResult = () => {
             if (this.props.result) {
                 var count = 0;
@@ -67,6 +71,7 @@ class About extends Component {
 const mapStateToProps = (state, ownProps) => {
     return {
         loggingIn: state.authentication.loggingIn,
+        loading: state.authentication.loading,
         result: state.search.result
     };
 };

@@ -1,11 +1,10 @@
 import axios from 'axios';
-import {loginSuccess} from "./login";
+import {loginSuccess, loginFail} from "./login";
 
 const apiUrl = 'http://localhost:8000/v1/getUser/';
 
 export const getInfo = () => {
     return (dispatch) => {
-        console.log(localStorage.getItem("access_token"));
         return axios({
             method: 'POST',
             url: apiUrl,
@@ -16,7 +15,7 @@ export const getInfo = () => {
                 dispatch(loginSuccess(response));
             })
             .catch(error => {
-                throw(error);
+                dispatch(loginFail());
             });
     };
 };

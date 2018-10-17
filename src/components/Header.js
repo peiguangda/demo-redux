@@ -1,5 +1,6 @@
 import React, {Component, Fragment} from 'react';
 import About from './About';
+import History from './History';
 import {
     BrowserRouter as Router,
     Route,
@@ -35,6 +36,9 @@ class Header extends Component {
                                 <SearchBar/>
                                 <ul className="nav navbar-nav navbar-right">
                                     <li>
+                                        <NavLink exact to='/histories' activeClassName="selected">History</NavLink>
+                                    </li>
+                                    <li>
                                         <NavLink exact to='/about' activeClassName="selected">About</NavLink>
                                     </li>
                                     <li className="dropdown">
@@ -44,6 +48,7 @@ class Header extends Component {
                             </div>
                         </div>
                     </nav>
+                    <Route exact path='/histories' component={History}/>
                     <Route exact path='/about' component={About}/>
                     <Route exact path='/' component={HomePage}/>
                 </Fragment>

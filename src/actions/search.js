@@ -5,9 +5,15 @@ const apiUrl = 'http://localhost:8000';
 
 export const search = word => {
     return (dispatch) => {
-        return axios.post(`${apiUrl}/v1/search`, {search: {id: word}, headers:{Authorization: localStorage.getItem("access_token")}})
+        return axios({
+            method: 'POST',
+            url: `${apiUrl}/v1/search`,
+            data: {search: {id: word}},
+            headers: {Authorization: localStorage.getItem("access_token")}
+        })
             .then(response => {
                 dispatch(createSearch(response));
+                saveToHistory(word);
             })
             .catch(error => {
                 if (error.error === "Not Found") {
@@ -28,4 +34,19 @@ export function searchFail() {
     return {
         type: searchConstants.SEARCH_FAIL,
     }
+}
+
+export function saveToHistory(word) {
+    axios({
+        method: 'POST',
+        url: `${apiUrl}/v1/historys`,
+        data: {historys: {word: word}},
+        headers: {Authorization: localStorage.getItem("access_token")}
+    })
+        .then(response => {
+            console.log(response);
+        })
+        .catch(error => {
+
+        });
 }

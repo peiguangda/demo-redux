@@ -1,14 +1,14 @@
 import {userConstants} from '../constants';
 import axios from 'axios';
 
-const apiUrl = 'http://localhost:8000/';
+const apiUrl = 'http://localhost:8000';
 
 export const login = (email, password) => {
     return (dispatch) => {
         return axios.post(`${apiUrl}/v1/login`, {email, password})
             .then(response => {
                 if (response.data.error === "invalid_email" || response.data.error === "invalid_password") {
-                    dispatch(loginFail(response));
+                    dispatch(loginFail());
                 } else {
                     dispatch(loginSuccess(response));
                 }
@@ -29,7 +29,7 @@ export function loginSuccess(response) {
     }
 }
 
-export function loginFail(response) {
+export function loginFail() {
     return {
         type: userConstants.LOGIN_FAILURE,
     }
